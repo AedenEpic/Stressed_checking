@@ -20,7 +20,7 @@ def cpu_stress(duration=10, threads=4):
             x *= 2
             x = x % 10000000
 
-    print(f"\n🔥 CPU Stress Test: {threads} threads for {duration} seconds...")
+    print(f"\n CPU Stress Test: {threads} threads for {duration} seconds...")
     jobs = []
     for _ in range(threads):
         t = threading.Thread(target=burn)
@@ -29,22 +29,22 @@ def cpu_stress(duration=10, threads=4):
         jobs.append(t)
 
     time.sleep(duration)
-    print("✅ CPU test complete.\n")
+    print(" CPU test complete.\n")
 
 def ram_stress(duration=10, size_mb=500):
-    print(f"\n🧠 RAM Stress Test: Allocating {size_mb}MB for {duration} seconds...")
+    print(f"\n RAM Stress Test: Allocating {size_mb}MB for {duration} seconds...")
     try:
         big_list = [0] * (size_mb * 1024 * 1024 // 8)  # 8 bytes per int
         time.sleep(duration)
         del big_list
         print("✅ RAM test complete.\n")
     except MemoryError:
-        print("❌ Not enough memory!")
+        print(" Not enough memory! ERROR there may be issues with your ram. Please seek techical support imendentally")
 
 def print_system_stats():
     total_ram = psutil.virtual_memory().total / (1024**3)
     cpu_cores = psutil.cpu_count(logical=True)
-    print("\n🧠 System Info:")
+    print("\n System Info:")
     print(f"- CPU cores: {cpu_cores}")
     print(f"- Memory: {round(total_ram, 2)} GB")
     print(f"- OS: {platform.system()} {platform.release()}")
@@ -89,8 +89,8 @@ def recommend_environment(ram, cpu_cores, vram):
     else:
         print("- Spotify desktop or Apple Music (Mac)")
 
-    # IDE
-    print("\n💻 IDE:")
+    # IDE // Note for mainly software developers
+    print("\n Best IDE:")
     if ram >= 8:
         print("- VS Code (recommended)")
         if ram >= 12:
@@ -99,7 +99,7 @@ def recommend_environment(ram, cpu_cores, vram):
         print("- Sublime Text (ultra-lightweight)")
 
     # Browsers
-    print("\n🌐 Browser:")
+    print("\n Best Browser for optimal performance:")
     if ram < 12 or cpu_cores < 12:
         print("- Avoid Chrome unless no background apps are running")
         print("- Prefer Firefox or Brave")
@@ -108,7 +108,7 @@ def recommend_environment(ram, cpu_cores, vram):
         print("- Brave and Edge are good alternatives")
 
     # Gaming Use Case
-    print("\n🎮 Capability:")
+    print("\n Gaming Capability/Usage:")
     if ram >= 16 and vram >= 12:
         print("- System is capable for moderate to heavy gaming")
     else:
